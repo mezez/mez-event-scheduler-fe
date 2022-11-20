@@ -12,8 +12,8 @@
       </div>
     </div>
     <div class="availaibility-child availaibility-child-actions">
-      <div disabled="availability.reserved==false">
-        Select Button
+      <div v-show="availability.reserved == false">
+        Book
         <!-- <Toggle
           v-model="availaibilityValue"
           @change="toggleAction"
@@ -99,7 +99,7 @@ export default {
   color: var(--vt-c-text-dark-2);
   margin: 5px;
   padding: 10px 10px;
-  cursor: pointer;
+  /* cursor: pointer; */
   display: flex;
 }
 .availaibility-child {
@@ -134,7 +134,8 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #bc5252;
+  color: #52bc92;
+  cursor: pointer;
 }
 .availaibility-child-delete-button {
   padding-top: 20px;

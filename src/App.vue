@@ -10,9 +10,6 @@ import CatchPhrase from "./components/CatchPhrase.vue";
       <CatchPhrase msg="Event Scheduler" />
       <nav>
         <RouterLink to="/"></RouterLink>
-        <!-- <span v-show="isLoggedIn" class="logout" @click="logout($event)"
-          >Logout</span
-        > -->
       </nav>
     </div>
   </header>
@@ -67,24 +64,11 @@ header {
   max-height: 100vh;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
 nav {
   width: 100%;
   font-size: 12px;
   text-align: center;
   margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
 }
 
 nav a {
@@ -104,10 +88,6 @@ nav a:first-of-type {
     padding-right: calc(var(--section-gap) / 2);
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
   header .wrapper {
     display: flex;
     place-items: flex-start;
@@ -122,11 +102,5 @@ nav a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
-}
-.logout {
-  cursor: pointer;
-  color: hsla(160, 100%, 37%, 1);
-  padding-left: 1rem;
-  border-left: 1px solid var(--color-border);
 }
 </style>

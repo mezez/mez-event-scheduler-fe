@@ -10,7 +10,7 @@ defineProps({
 <template>
   <div class="catchphrase">
     <h1 class="green">{{ msg }}</h1>
-    <h3>Event scheduling made easy...</h3>
+    <!-- <h3>Event scheduling made easy...</h3> -->
   </div>
 </template>
 

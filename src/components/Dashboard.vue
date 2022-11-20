@@ -78,11 +78,6 @@ export default {
   },
 
   watch: {
-    // isLoggedIn(newVal) {
-    //   if (newVal) {
-    //     this.getInitialBuildings();
-    //   }
-    // },
     date: {
       async handler(newDate) {
         await this.loadAvailabilities();
@@ -99,6 +94,7 @@ export default {
   margin-left: 1em;
   padding: 1em;
   width: 100%;
+  overflow-y: scroll;
   border: 1px solid white;
 }
 .container {
@@ -116,30 +112,10 @@ export default {
   width: 100%;
   padding: 0px 0px 5px 0px;
 }
-.title {
-  width: calc(100% - 60px);
-}
-.button-div {
-  display: block;
-  margin-left: auto;
-  margin-bottom: 0.5rem;
-}
 .spinner-div {
   margin: 1rem;
 }
-.windows-and-heaters {
-  display: flex;
-}
 
 @media screen and (min-width: 20em) and (max-width: 594px) {
-  /* .heater-child:first-child { */
-  .windows-and-heaters {
-    display: block;
-  }
-  .wind .heat {
-    width: 100%;
-    /* display: block; */
-    /* width: calc(50% - 0.5em); */
-  }
 }
 </style>
