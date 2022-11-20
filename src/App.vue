@@ -14,46 +14,19 @@ import CatchPhrase from "./components/CatchPhrase.vue";
     </div>
   </header>
 
-  <RouterView :loadingAvailabilities="loadingAvailabilities" />
+  <RouterView />
 </template>
 
 <script>
 export default {
   name: "App",
   components: {},
-  methods: {
-    async loadAvailabilities() {
-      const res = await fetch(`${this.$server_base_url}availabilities`, {
-        method: this.$GET,
-        headers: {},
-      });
+  methods: {},
 
-      const data = await res.json();
-      if (data.length > 0 && data.id !== null) {
-        this.availabilties = data;
-        this.loadingAvailabilities = false;
-      }
-    },
-  },
-
-  async created() {
-    // const res = await fetch(`${this.$server_base_url}availabilities`, {
-    //   method: this.$GET,
-    //   headers: {},
-    // });
-    // const data = await res.json();
-    // if (data.length > 0 && data.id !== null) {
-    //   console.log(data);
-    //   this.availabilties = data;
-    //   this.loadingAvailabilities = false;
-    // }
-  },
+  async created() {},
 
   data() {
-    return {
-      loadingAvailabilities: true,
-      availabilties: [],
-    };
+    return {};
   },
 };
 </script>

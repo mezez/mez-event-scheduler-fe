@@ -13,6 +13,7 @@
         <!-- <v-calendar /> -->
         <v-date-picker v-model="date" mode="date" />
         <div class="avail">
+          <h4 v-show="availabilties.length == 0">No slots available</h4>
           <div :key="availability.id" v-for="availability in availabilties">
             <!-- <Availability
                 :window="window"
@@ -21,7 +22,7 @@
                 :remoteCall="remoteCall"
                 :deleteFromEntity="deleteFromEntity"
               /> -->
-            <Availability :availability="availability" />
+            <Availability :availability="availability" :bookSlot="bookSlot" />
           </div>
         </div>
       </div>
@@ -33,9 +34,7 @@
 import { FulfillingBouncingCircleSpinner } from "epic-spinners";
 import Availability from "./Availability.vue";
 export default {
-  props: {
-    // loadingAvailabilities: Boolean,
-  },
+  props: {},
   components: {
     FulfillingBouncingCircleSpinner,
     Availability,
@@ -64,9 +63,30 @@ export default {
 
       const data = await res.json();
       if (data) {
-        console.log(data);
         this.availabilties = data;
         this.loadingAvailabilities = false;
+      }
+    },
+
+    async bookSlot(availability_id, email) {
+      console.log("booking");
+      const res = await fetch(`${this.$server_base_url}reservations/create`, {
+        method: this.$POST,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: `reservervation for ${email}`,
+          email,
+          availability_id,
+        }),
+      });
+
+      const data = await res.json();
+      if (data) {
+        console.log(data);
+        return data;
       }
     },
   },
@@ -94,6 +114,7 @@ export default {
   margin-left: 1em;
   padding: 1em;
   width: 100%;
+  max-height: 30rem;
   overflow-y: scroll;
   border: 1px solid white;
 }

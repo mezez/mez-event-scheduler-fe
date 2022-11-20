@@ -13,23 +13,13 @@
     </div>
     <div class="availaibility-child availaibility-child-actions">
       <div v-show="availability.reserved == false">
-        Book
+        <div @click="reserveAction" class="reserve">Book</div>
         <!-- <Toggle
           v-model="availaibilityValue"
           @change="toggleAction"
           :diabled="toggledisabled"
         /> -->
       </div>
-      <!-- <div class="availaibility-child-delete-button">
-        <Delete
-          :deleteAction="remoteCall"
-          :deleteUrl="deleteUrl"
-          :disabled="toggledisabled"
-          :updateEntities="deleteFromEntity"
-          :entities="'availaibilitys'"
-          :itemId="availaibility.id"
-        />
-      </div> -->
     </div>
   </div>
 </template>
@@ -40,39 +30,25 @@ export default {
   name: "availaibility",
   props: {
     availability: Object,
+    bookSlot: Function,
   },
   components: {
     // Toggle,
   },
   methods: {
-    // async toggleAction() {
-    //   this.toggledisabled = true;
-    //   //   update remotely
-    //   this.remoteToggleEntity("availaibilitys", this.availaibility.id)
-    //     .then(() => {
-    //       this.availaibility.availaibilityStatus =
-    //         this.availaibility.availaibilityStatus === "ON" ? "OFF" : "ON";
-    //       // re enable button after update
-    //     })
-    //     .catch(() => {
-    //       this.$notify({
-    //         title: "Error",
-    //         text: "Error occured while switching availaibility's status",
-    //         type: "error",
-    //       });
-    //     })
-    //     .finally(() => {
-    //       this.toggledisabled = false;
-    //     });
-    // },
+    async reserveAction() {
+      //   update remotely
+      const res = await this.bookSlot(this.availability.id, "cve@gmail.com");
+      if (res) {
+        if (res.message === "successful") {
+          this.availability.reserved = true;
+        }
+      }
+    },
   },
   setup() {},
   data() {
-    // return {
-    //   availaibilityValue: true,
-    //   toggledisabled: false,
-    //   deleteUrl: `${this.$server_base_url}availaibilitys/${this.availaibility.id}`,
-    // };
+    return {};
   },
   watch: {
     //   "availaibility.availaibilityStatus"(newVal) {
@@ -135,6 +111,9 @@ export default {
   align-items: center;
   justify-content: center;
   color: #52bc92;
+}
+
+.reserve {
   cursor: pointer;
 }
 .availaibility-child-delete-button {
