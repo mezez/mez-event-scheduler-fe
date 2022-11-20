@@ -7,7 +7,6 @@
     />
   </div>
   <div v-show="loadingAvailabilities == false">
-    <WelcomeBar />
     <div>
       <div class="container">
         <!-- <v-calendar /> -->
@@ -85,7 +84,6 @@ export default {
 
       const data = await res.json();
       if (data) {
-        console.log(data);
         return data;
       }
     },

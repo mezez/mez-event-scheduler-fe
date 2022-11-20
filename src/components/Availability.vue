@@ -13,13 +13,41 @@
     </div>
     <div class="availaibility-child availaibility-child-actions">
       <div v-show="availability.reserved == false">
-        <div @click="reserveAction" class="reserve">Book</div>
+        <div @click="showEmail = true" class="reserve">Book</div>
         <!-- <Toggle
           v-model="availaibilityValue"
           @change="toggleAction"
           :diabled="toggledisabled"
         /> -->
       </div>
+    </div>
+  </div>
+  <div v-show="showEmail" style="padding: 0.5rem; display: flex">
+    <div>
+      <input
+        v-model="email"
+        class="input textInput"
+        placeholder="Please enter your email"
+        type="email"
+        id="emal"
+        name="emal"
+      />
+    </div>
+    <div
+      @click="reserveAction"
+      style="margin-left: 0.5rem; color: azure; cursor: pointer"
+    >
+      Save Booking |
+    </div>
+
+    <div
+      @click="
+        showEmail = false;
+        email = '';
+      "
+      style="margin-left: 0.5rem; color: gray; cursor: pointer"
+    >
+      Cancel
     </div>
   </div>
 </template>
@@ -37,35 +65,27 @@ export default {
   },
   methods: {
     async reserveAction() {
-      //   update remotely
-      const res = await this.bookSlot(this.availability.id, "cve@gmail.com");
-      if (res) {
-        if (res.message === "successful") {
-          this.availability.reserved = true;
+      if (this.email.length > 3 && this.email.includes("@")) {
+        // create reservation
+        const res = await this.bookSlot(this.availability.id, this.email);
+        if (res) {
+          if (res.status_code === 200) {
+            this.availability.reserved = true;
+            this.showEmail = false;
+            this.email = "";
+          }
         }
       }
     },
   },
   setup() {},
   data() {
-    return {};
+    return {
+      showEmail: false,
+      email: "",
+    };
   },
-  watch: {
-    //   "availaibility.availaibilityStatus"(newVal) {
-    //     if (newVal === "ON") {
-    //       this.availaibilityValue = true;
-    //     } else {
-    //       this.availaibilityValue = false;
-    //     }
-    //   },
-    // },
-    // async created() {
-    //   if (this.availaibility.availaibilityStatus === "ON") {
-    //     this.availaibilityValue = true;
-    //   } else {
-    //     this.availaibilityValue = false;
-    //   }
-  },
+  watch: {},
 };
 </script>
 
@@ -118,5 +138,20 @@ export default {
 }
 .availaibility-child-delete-button {
   padding-top: 20px;
+}
+
+.input {
+  color: white;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.textInput {
+  display: block;
+  width: 100%;
+  height: 40px;
+  padding-left: 8px;
+  border-radius: 5px;
+  background: rgb(18, 18, 18);
+  border-color: hsla(160, 100%, 37%, 1);
 }
 </style>
