@@ -3,19 +3,19 @@
 <template>
   <main>
     <!-- <Dashboard :loadingAvailabilities="loadingAvailabilities" /> -->
-    <Dashboard />
+    <Scheduler />
   </main>
 </template>
 
 <script>
-import Dashboard from "../components/Dashboard.vue";
+import Scheduler from "../components/Scheduler.vue";
 export default {
   name: "Home",
   props: {
     loadingAvailabilities: Boolean,
   },
   components: {
-    Dashboard,
+    Scheduler,
   },
   methods: {},
   created() {},

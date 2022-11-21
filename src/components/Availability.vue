@@ -14,11 +14,6 @@
     <div class="availaibility-child availaibility-child-actions">
       <div v-show="availability.reserved == false">
         <div @click="showEmail = true" class="reserve">Book</div>
-        <!-- <Toggle
-          v-model="availaibilityValue"
-          @change="toggleAction"
-          :diabled="toggledisabled"
-        /> -->
       </div>
     </div>
   </div>
@@ -124,7 +119,6 @@ export default {
   color: var(--vt-c-text-dark-2);
   margin: 5px;
   padding: 10px 10px;
-  /* cursor: pointer; */
   display: flex;
 }
 .availaibility-child {
@@ -137,11 +131,8 @@ export default {
 }
 /*  */
 @media screen and (min-width: 20em) and (max-width: 880px) {
-  /* .availaibility-child:first-child { */
   .availaibility-child {
     width: 100%;
-    /* display: block; */
-    /* width: calc(50% - 0.5em); */
   }
 
   .availaibility {
@@ -164,9 +155,6 @@ export default {
 
 .reserve {
   cursor: pointer;
-}
-.availaibility-child-delete-button {
-  padding-top: 20px;
 }
 
 .input {

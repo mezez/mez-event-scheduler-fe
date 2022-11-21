@@ -9,18 +9,10 @@
   <div v-show="loadingAvailabilities == false">
     <div>
       <div class="container">
-        <!-- <v-calendar /> -->
         <v-date-picker v-model="date" mode="date" />
         <div class="avail">
           <h4 v-show="availabilties.length == 0">No slots available</h4>
           <div :key="availability.id" v-for="availability in availabilties">
-            <!-- <Availability
-                :window="window"
-                @toggleChild="toggleChild"
-                :remoteToggleEntity="remoteToggleEntity"
-                :remoteCall="remoteCall"
-                :deleteFromEntity="deleteFromEntity"
-              /> -->
             <Availability :availability="availability" :bookSlot="bookSlot" />
           </div>
         </div>
@@ -48,43 +40,50 @@ export default {
 
   methods: {
     async loadAvailabilities() {
-      const res = await fetch(
-        `${
-          this.$server_base_url
-        }availabilities-by-date/${this.date.getDate()}/${
-          this.date.getMonth() + 1
-        }/${this.date.getFullYear()}`,
-        {
-          method: this.$GET,
-          headers: {},
-        }
-      );
+      try {
+        const res = await fetch(
+          `${
+            this.$server_base_url
+          }availabilities-by-date/${this.date.getDate()}/${
+            this.date.getMonth() + 1
+          }/${this.date.getFullYear()}`,
+          {
+            method: this.$GET,
+            headers: {},
+          }
+        );
 
-      const data = await res.json();
-      if (data) {
-        this.availabilties = data;
-        this.loadingAvailabilities = false;
+        const data = await res.json();
+        if (data) {
+          this.availabilties = data;
+          this.loadingAvailabilities = false;
+        }
+      } catch (error) {
+        console.log("Error occurred while fetching");
       }
     },
 
     async bookSlot(availability_id, email) {
-      console.log("booking");
-      const res = await fetch(`${this.$server_base_url}reservations/create`, {
-        method: this.$POST,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: `reservervation for ${email}`,
-          email,
-          availability_id,
-        }),
-      });
+      try {
+        const res = await fetch(`${this.$server_base_url}reservations/create`, {
+          method: this.$POST,
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: `reservervation for ${email}`,
+            email,
+            availability_id,
+          }),
+        });
 
-      const data = await res.json();
-      if (data) {
-        return data;
+        const data = await res.json();
+        if (data) {
+          return data;
+        }
+      } catch (error) {
+        console.log("Error occurred while booking slot");
       }
     },
   },
@@ -121,15 +120,6 @@ export default {
   border-radius: 4px;
   padding: 2rem;
   display: flex;
-}
-
-.container-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: large;
-  width: 100%;
-  padding: 0px 0px 5px 0px;
 }
 .spinner-div {
   margin: 1rem;
