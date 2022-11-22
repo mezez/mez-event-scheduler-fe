@@ -17,7 +17,6 @@ app.use(VCalender, {});
 app.use(router);
 
 //GLOBAL CONSTANTS
-
 app.config.globalProperties.$server_base_url = "http://127.0.0.1:5000/api/";
 
 app.config.globalProperties.$GET = "GET";

@@ -34,24 +34,10 @@ npm run build
 
   - You can only book for slots starting from the next day from current date
   - Click on Build, enter email address and click save booking to reserve a slot.
-  - Use the Logout button to logout
+  - Update backend api url in global settings found in main.js. Replace http://127.0.0.1:5000 with your url if applicable.
 
-- **NOTIFICATIONS**
+  ```sh
+  app.config.globalProperties.$server_base_url = "http://127.0.0.1:5000/api/";
+  ```
 
-  - Error/Validation notifications creating entities
-
-- **BUILDING |** **ROOM |** **WINDOW |** **HEATER**
-
-  - List
-  - Create
-  - Delete
-
-- **WINDOW |** **HEATER**
-
-  - Toggle Individual Status
-  - Toggle All in Current Room
-
-    **EXTRAS**
-
-  - Basic Auth
-  - Basic Mobile Responsiveness (Media Queries)
+  - The api for this application can be found at https://github.com/mezez/mez-event-scheduler-be
