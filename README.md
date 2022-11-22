@@ -1,4 +1,4 @@
-# faircorp-fe-mez
+# Event Scheduler Frontend
 
 This project is the implementation of a frontend application for scheduling events on a calendar.
 

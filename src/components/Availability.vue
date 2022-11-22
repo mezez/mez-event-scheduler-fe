@@ -142,6 +142,7 @@ export default {
   .availaibility {
     display: block;
     width: 15em;
+    padding: 1px 1px;
   }
 }
 

@@ -137,5 +137,11 @@ export default {
 }
 
 @media screen and (min-width: 20em) and (max-width: 594px) {
+  .container {
+    display: block;
+  }
+  .avail {
+    margin-top: 1rem;
+  }
 }
 </style>
