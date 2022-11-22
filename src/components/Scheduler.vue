@@ -99,7 +99,11 @@ export default {
   watch: {
     date: {
       async handler(newDate) {
-        await this.loadAvailabilities();
+        if (newDate.getTime() > new Date().getTime()) {
+          await this.loadAvailabilities();
+        } else {
+          this.availabilties = [];
+        }
       },
       deep: true,
     },
