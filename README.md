@@ -1,10 +1,6 @@
 # faircorp-fe-mez
 
-This project is the implementation of a frontend application for managing facilities in a smart building.
-
-The managed entities include Building, Rooms, Heaters and Windows.
-
-Team Members: Chimezirim Victor EKEMAM, Ignas BARAKAUSKAS and Sara Assefa ALLEMAYEHU
+This project is the implementation of a frontend application for scheduling events on a calendar.
 
 ## Recommended IDE Setup
 
@@ -32,19 +28,12 @@ npm run dev
 npm run build
 ```
 
-## Credentials of users:
-
-- ROLE **ADMIN**
-  - username: admin
-  - password: password
-  - [User has full access to all features]
-
 ## Implemented Features:
 
-- **NAVIGATION**
+- **Booking**
 
-  - Click on each entity row to view details
-  - Use the Back button at the top right of the screen to return to previous screen
+  - You can only book for slots starting from the next day from current date
+  - Click on Build, enter email address and click save booking to reserve a slot.
   - Use the Logout button to logout
 
 - **NOTIFICATIONS**

@@ -92,17 +92,22 @@ export default {
 
   async mounted() {
     if (this.date) {
-      await this.loadAvailabilities();
+      if (this.date.getDay() > new Date().getDay()) {
+        await this.loadAvailabilities();
+      } else {
+        this.loadingAvailabilities = false;
+      }
     }
   },
 
   watch: {
     date: {
       async handler(newDate) {
-        if (newDate.getTime() > new Date().getTime()) {
+        if (newDate.getDay() > new Date().getDay()) {
           await this.loadAvailabilities();
         } else {
           this.availabilties = [];
+          this.loadAvailabilities = false;
         }
       },
       deep: true,
