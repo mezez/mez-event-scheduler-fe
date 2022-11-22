@@ -75,28 +75,32 @@ export default {
     },
 
     async formatTime() {
-      if (this.availability.start.toString().length === 3) {
-        this.availability.start =
-          (await this.availability.start.toString().substr(0, 1)) +
-          ":" +
-          this.availability.start.toString().substr(1);
-      } else if (this.availability.start.toString().length === 4) {
-        this.availability.start =
-          (await this.availability.start.toString().substr(0, 2)) +
-          ":" +
-          this.availability.start.toString().substr(2);
-      }
+      try {
+        if (this.availability.start.toString().length === 3) {
+          this.availability.start =
+            (await this.availability.start.toString().substr(0, 1)) +
+            ":" +
+            this.availability.start.toString().substr(1);
+        } else if (this.availability.start.toString().length === 4) {
+          this.availability.start =
+            (await this.availability.start.toString().substr(0, 2)) +
+            ":" +
+            this.availability.start.toString().substr(2);
+        }
 
-      if (this.availability.end.toString().length === 3) {
-        this.availability.end =
-          (await this.availability.end.toString().substr(0, 1)) +
-          ":" +
-          this.availability.end.toString().substr(1);
-      } else if (this.availability.end.toString().length === 4) {
-        this.availability.end =
-          (await this.availability.end.toString().substr(0, 2)) +
-          ":" +
-          this.availability.end.toString().substr(2);
+        if (this.availability.end.toString().length === 3) {
+          this.availability.end =
+            (await this.availability.end.toString().substr(0, 1)) +
+            ":" +
+            this.availability.end.toString().substr(1);
+        } else if (this.availability.end.toString().length === 4) {
+          this.availability.end =
+            (await this.availability.end.toString().substr(0, 2)) +
+            ":" +
+            this.availability.end.toString().substr(2);
+        }
+      } catch (error) {
+        console.log("Failed to format availability");
       }
     },
   },

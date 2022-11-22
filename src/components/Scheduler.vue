@@ -55,8 +55,10 @@ export default {
 
         const data = await res.json();
         if (data) {
-          this.availabilties = data;
-          this.loadingAvailabilities = false;
+          if (Array.isArray(data)) {
+            this.availabilties = data;
+            this.loadingAvailabilities = false;
+          }
         }
       } catch (error) {
         console.log("Error occurred while fetching");
