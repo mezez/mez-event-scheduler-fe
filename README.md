@@ -41,3 +41,9 @@ npm run build
   ```
 
   - The api for this application can be found at https://github.com/mezez/mez-event-scheduler-be
+  
+  
+  PREVIEW
+  
+  ![image](https://user-images.githubusercontent.com/12862246/203193995-70d30cde-7332-4f00-a7d6-b86b5d0c71dd.png)
+
